@@ -3,8 +3,8 @@
 
 A simple square environment for [openai-gym](https://gym.openai.com/).
 
-<p align="center">
-  <img src="./docs/square_world.gif" alt="square_world" height="300" >
+<p align="left">
+  <img src="./docs/square_world.gif" alt="square_world" height="600" >
 </p>
 
 # Installation
