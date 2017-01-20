@@ -13,7 +13,7 @@ class TestLeftRightEnv(unittest.TestCase):
         env.reset()
         for _ in range(100):
 
-            env.render()
+            #env.render()
             action = env.action_space.sample()
             observation, reward, done, info = env.step(action)
 
@@ -27,11 +27,8 @@ class TestLeftRightEnv(unittest.TestCase):
                 print 'Episode Finished'
                 break
 
-            sleep(0.2)
+            sleep(0.01)
 
-        for _ in range(1):
-            env.render()
-            sleep(0.2)
 
 
         return True
