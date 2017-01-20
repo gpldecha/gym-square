@@ -16,7 +16,7 @@ class TestLeftRightEnv(unittest.TestCase):
         env.square_world.set_agent_state(55)
 
         for _ in range(200):
-            env.render()
+            #env.render()
 
             action = env.action_space.sample()
             observation, reward, done, info = env.step(action)
