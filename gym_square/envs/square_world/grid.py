@@ -58,13 +58,17 @@ class Grid:
         if y < 0: y = 0
         if y > self.length: y = self.length
 
-        x = round(x / (self.length) * self.num_bins)
-        y = round(y / (self.length) * self.num_bins)
+        x = round( (float(x) / float(self.length)) * float(self.num_bins))
+        y = round( (float(y) / float(self.length)) * float(self.num_bins))
+
         return np.array([x,y])
 
     def grid2state(self,i,j):
         """ i and j are integer coordinates, returns a state coordinate """
         return int(j * self.num_bins + i)
+
+    def state2grid(self,state):
+        return float(state) % float(self.num_bins), int(float(state) / float(self.num_bins))
 
     def world2pixel_pos(self,x,y):
         return map(int,[x + self.width/2.0, -y + self.height/2.0])

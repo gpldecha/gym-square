@@ -17,13 +17,15 @@ from square_world.reward import Reward
 
 class SquareEnv(gym.Env):
 
-    metadata = {'render.modes': ['human']}
+    metadata = {
+        'render.modes': ['human', 'rgb_array'],
+        'video.frames_per_second': 30
+    }
 
     def __init__(self):
         self._seed()
         self.reset()
 
-        self._bRender           = False
         self.square_world       = SquareWorld()
         self.action_space       = spaces.Discrete(4)
         self.observation_space  = self.square_world.get_observation_space()
@@ -60,13 +62,8 @@ class SquareEnv(gym.Env):
 
         return state, reward, done, {}
 
-
     def _reset(self):
         pass
 
     def _render(self, mode='human', close=False):
-        if not self._bRender:
-            self.square_world.init_render()
-            self._bRender = True
-        else:
-            self.square_world.render()
+        self.square_world.render(close)
