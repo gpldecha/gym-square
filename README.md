@@ -4,7 +4,7 @@
 A simple square environment for [openai-gym](https://gym.openai.com/).
 
 <p align="left">
-  <img src="./docs/square_world.gif" alt="square_world" height="600" >
+  <img src="./docs/square_world.gif" alt="square_world" height="500" >
 </p>
 
 # Installation
