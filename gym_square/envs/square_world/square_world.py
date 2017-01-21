@@ -58,7 +58,7 @@ class SquareWorld:
         self.agent.pos_tmp = self.agent.pos[:]
 
     def set_reward(self,reward):
-        self.reward = reward   
+        self.reward = reward
 
     def update(self,u):
         """ Upates the position of the agent in the square world
@@ -91,6 +91,8 @@ class SquareWorld:
                 if event.type == pygame.QUIT: sys.exit()
 
             self.screen.fill( (255, 255, 255) )
+
+            self.reward.draw(self.screen,self.grid.state2grid,self.grid.grid2pixel_pos,self.scale,self.grid.cell_size)
 
             pygame.draw.rect(self.screen, self.border_color, (self.sq_pos,self.sq_pos,self.sq_px_length,self.sq_px_length), self.border_width)
             self.grid.draw(self.screen)

@@ -7,7 +7,7 @@ env = gym.make('square-v0')
 env.square_world.set_agent_state(80)
 env.render()
 
-for _ in range(100):
+for _ in range(10):
     env.render()
     sleep(0.1)
 
