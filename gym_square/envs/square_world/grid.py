@@ -54,9 +54,9 @@ class Grid:
             the bottom left corner of the square.
         """
         if x < 0: x = 0
-        if x > self.length: x = self.length
+        if x >= self.length: x = self.length - self.cell_size
         if y < 0: y = 0
-        if y > self.length: y = self.length
+        if y >= self.length: y = self.length - self.cell_size
 
         x = round( (float(x) / float(self.length)) * float(self.num_bins))
         y = round( (float(y) / float(self.length)) * float(self.num_bins))

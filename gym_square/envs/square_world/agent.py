@@ -21,12 +21,13 @@ class Agent:
 
 
     def update(self,pos):
-        self.pos_tmp    = self.pos[:]
-        self.pos        = pos
+        if np.sum(pos - self.pos) != 0:
+            self.pos_tmp    = self.pos[:]
+            self.pos        = pos
 
-        self._disp      = self.pos - self.pos_tmp
-        self._disp      = self._disp / ( np.sqrt(np.sum(self._disp**2)) + 0.00001 )
-        self.theta      = math.atan2(self._disp[1],self._disp[0])
+            self._disp      = self.pos - self.pos_tmp
+            self._disp      = self._disp / ( np.sqrt(np.sum(self._disp**2)) + 0.00001 )
+            self.theta      = math.atan2(self._disp[1],self._disp[0])
 
     def draw(self,screen,grid2pixel_pos):
 

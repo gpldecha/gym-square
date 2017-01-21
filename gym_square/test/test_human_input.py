@@ -2,6 +2,8 @@ import unittest
 import gym
 
 from gym_square.envs.square_env import SquareEnv
+from gym_square.envs.square_world.keyboard import Keyboard
+
 from time import sleep
 import numpy as np
 import matplotlib.cm as cmx
@@ -19,13 +21,16 @@ class TestLeftRightEnv(unittest.TestCase):
         cm = cmx.get_cmap('brg')
         env.square_world.reward.set_color_map(cm)
 
+        #keyboard = Keyboard()
 
-        for _ in range(1):
-            #env.render()
+        #env.render()
+        for i in range(1):
+        #    env.render()
 
-            action = env.action_space.sample()
+            action = 0 # keyboard.get_action()
             observation, reward, done, info = env.step(action)
 
+            print 'i:    ', i
             print 'act:  ', action
             print 'obs:  ', observation
             print 'rew:  ', reward
@@ -35,8 +40,6 @@ class TestLeftRightEnv(unittest.TestCase):
             if done:
                 print 'Episode Finished'
                 break
-
-            sleep(0.001)
 
         return True
 

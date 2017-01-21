@@ -43,15 +43,19 @@ class SquareEnv(gym.Env):
     def _step(self, action):
         assert self.action_space.contains(action), "%r (%s) invalid" % (action, type(action))
         if action == 0:
+            # right
             self._u[0]      =  1
             self._u[1]      =  0
         elif action == 1:
+            # left
             self._u[0]      = -1
             self._u[1]      =  0
         elif action == 2:
+            # up
             self._u[0]      =  0
             self._u[1]      =  1
         elif action == 3:
+            # down
             self._u[0]      =  0
             self._u[1]      = -1
         else:
