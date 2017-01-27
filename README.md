@@ -42,5 +42,4 @@ for _ in range(500):
 ```
 
 # Examples 
-
-
+A set of examples are provided in [gym_square/example](https://github.com/gpldecha/gym-square/tree/master/gym_square/example)
