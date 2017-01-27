@@ -1,36 +1,35 @@
 import unittest
 import gym
 
-from gym_square.envs.square_env import SquareEnv
-from gym_square.envs.square_world.keyboard import Keyboard
-
+from gym_square.envs.square_continuous_state_env import SquareContinuousStateEnv
 from time import sleep
 import numpy as np
 import matplotlib.cm as cmx
 
 
-class TestLeftRightEnv(unittest.TestCase):
+class TestSquareContinuousStateEnv(unittest.TestCase):
 
-    def test_env(self):
+    def test_continuous_state_env(self):
 
-        env = SquareEnv()
+        print '=== Test SquareContinuousStateEnv ==='
+        print ' '
+
+        env = SquareContinuousStateEnv()
         env.reset()
-
-        env.square_world.set_agent_state(55)
 
         cm = cmx.get_cmap('brg')
         env.square_world.reward.set_color_map(cm)
 
-        #keyboard = Keyboard()
+        env.square_world.set_agent_state([0.5,0.5])
 
         #env.render()
-        for i in range(1):
-        #    env.render()
 
-            action = 0 # keyboard.get_action()
+        for _ in range(5):
+            #env.render()
+
+            action = env.action_space.sample()
             observation, reward, done, info = env.step(action)
 
-            print 'i:    ', i
             print 'act:  ', action
             print 'obs:  ', observation
             print 'rew:  ', reward
@@ -40,6 +39,8 @@ class TestLeftRightEnv(unittest.TestCase):
             if done:
                 print 'Episode Finished'
                 break
+
+            sleep(0.01)
 
         return True
 

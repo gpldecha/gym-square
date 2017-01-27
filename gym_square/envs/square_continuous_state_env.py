@@ -3,9 +3,8 @@
 @author: Guillaume de Chambrier
 
     A simple square world.
-    State: Discrete
+    State: Continuous
     Action: Discrete
-
 """
 
 import math
@@ -17,7 +16,8 @@ import numpy as np
 from square_world.square_world import SquareWorld
 from square_world.reward import Reward
 
-class SquareEnv(gym.Env):
+
+class SquareContinuousStateEnv(gym.Env):
 
     metadata = {
         'render.modes': ['human', 'rgb_array'],
@@ -28,12 +28,12 @@ class SquareEnv(gym.Env):
         self._seed()
         self.reset()
 
-        self.square_world       = SquareWorld(state='discrete')
+        self.square_world       = SquareWorld(state='continuous')
         self.action_space       = spaces.Discrete(4)
         self.observation_space  = self.square_world.get_observation_space()
 
         # control command to agent
-        self._u = np.array([0,0])
+        self._u = np.array([0,0],dtype=float)
 
     def set_reward(self,reward):
         self.square_world.reward = reward
@@ -46,20 +46,20 @@ class SquareEnv(gym.Env):
         assert self.action_space.contains(action), "%r (%s) invalid" % (action, type(action))
         if action == 0:
             # right
-            self._u[0]      =  1
+            self._u[0]      =  0.05
             self._u[1]      =  0
         elif action == 1:
             # left
-            self._u[0]      = -1
+            self._u[0]      = -0.05
             self._u[1]      =  0
         elif action == 2:
             # up
             self._u[0]      =  0
-            self._u[1]      =  1
+            self._u[1]      =  0.05
         elif action == 3:
             # down
             self._u[0]      =  0
-            self._u[1]      = -1
+            self._u[1]      = -0.05
         else:
             self._u[0]      =  0
             self._u[1]      =  0

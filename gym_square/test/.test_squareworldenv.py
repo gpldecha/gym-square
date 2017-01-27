@@ -7,9 +7,9 @@ import numpy as np
 import matplotlib.cm as cmx
 
 
-class TestLeftRightEnv(unittest.TestCase):
+class TestSquareWorldEnv(unittest.TestCase):
 
-    def test_env(self):
+    def test_square_world_disc_env(self):
 
         env = SquareEnv()
         env.reset()
@@ -19,9 +19,7 @@ class TestLeftRightEnv(unittest.TestCase):
         cm = cmx.get_cmap('brg')
         env.square_world.reward.set_color_map(cm)
 
-
         for _ in range(1):
-            #env.render()
 
             action = env.action_space.sample()
             observation, reward, done, info = env.step(action)

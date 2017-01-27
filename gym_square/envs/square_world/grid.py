@@ -20,34 +20,22 @@ class Grid:
                 self.states[idx,:] = np.array([self.grid2state(i,j),i,j])
                 idx=idx+1
 
-    def init_render(self,screen,scale,sq_pos):
+    def init_render(self,pt2pixel):
 
         # colors
         self.black          = (0,0,0)
-        self.scale          = scale
 
-        self.width          = screen.get_width()
-        self.height         = screen.get_height()
-        self.offset         = (self.cell_size / 2.0) * self.scale
-        self.sq_pos         = sq_pos
+        self.pt2pixel       = pt2pixel
 
         default_font        = pygame.font.get_default_font()
         self.font_renderer  = pygame.font.Font(default_font, 20)
 
         self.pts_px     = []
         for x in self.pts:
-            start_pos       = [self.scale * (x - self.length / 2.0),  self.scale * (0 - self.length / 2.0)]
-            end_pos         = [self.scale * (x - self.length / 2.0),  self.scale * (self.length - self.length / 2.0)]
-            start_pos_px    = self.world2pixel_pos(x=start_pos[0],y=start_pos[1])
-            end_pos_px      = self.world2pixel_pos(x=end_pos[0],y=end_pos[1])
-            self.pts_px.append([start_pos_px,end_pos_px])
+            self.pts_px.append([pt2pixel(x=x,y=0),pt2pixel(x=x,y=self.length)])
         self.pts_py     = []
         for y in self.pts:
-            start_pos       = [self.scale * (0 - self.length / 2.0),          self.scale * (y - self.length / 2.0)]
-            end_pos         = [self.scale * (self.length - self.length / 2.0),     self.scale * (y - self.length / 2.0)]
-            start_pos_py    = self.world2pixel_pos(x=start_pos[0],y=start_pos[1])
-            end_pos_py      = self.world2pixel_pos(x=end_pos[0],y=end_pos[1])
-            self.pts_py.append([start_pos_py,end_pos_py])
+            self.pts_py.append([pt2pixel(x=0,y=y),pt2pixel(x=self.length,y=y)])
 
     def pt2grid(self,x,y):
         """ x and y are in the grid's frame of reference which is at
@@ -70,21 +58,15 @@ class Grid:
     def state2grid(self,state):
         return float(state) % float(self.num_bins), int(float(state) / float(self.num_bins))
 
-    def world2pixel_pos(self,x,y):
-        return map(int,[x + self.width/2.0, -y + self.height/2.0])
-
     def grid2pixel_pos(self,x,y):
-        return map(int,[x * self.scale + self.sq_pos + self.offset, -y * self.scale + self.height - self.sq_pos - self.offset])
-
-    def world2pixel_orient(self,orientation):
-        return orientation + math.pi / 2.0
+        return self.pt2pixel(x=(x + self.cell_size / 2.0),y=(y + self.cell_size / 2.0))
 
     def _draw_states(self,screen):
         for row in self.states:
             text = self.font_renderer.render(str(int(row[0])), 1, self.black)
             text_w = text.get_rect().width
             text_h = text.get_rect().height
-            pos = self.grid2pixel_pos(row[1],row[2])
+            pos = self.pt2pixel(x=(row[1] + self.cell_size / 2.0),y=(row[2]+ self.cell_size / 2.0))
             screen.blit(text, [pos[0] - text_w/2,pos[1] - text_h/2])
 
     def draw(self,screen):
