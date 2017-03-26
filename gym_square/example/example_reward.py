@@ -3,11 +3,11 @@ import gym_square
 from time import sleep
 import matplotlib.cm as cmx
 
-from gym_square.envs.square_world.reward import Reward
+from gym_square.envs.square_world.reward import DiscreteReward
 
 env = gym.make('square-v0')
 
-reward = Reward()
+reward = DiscreteReward()
 reward.default_reward =   -1.0
 reward.max_reward     =  100.0
 reward.min_reward     = -100.0

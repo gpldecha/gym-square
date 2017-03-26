@@ -22,10 +22,12 @@ class TestSquareContinuousStateEnv(unittest.TestCase):
 
         env.square_world.set_agent_state([0.5,0.5])
 
-        #env.render()
+        bRender = True
+
+        if bRender: env.render()
 
         for _ in range(5):
-            #env.render()
+            if bRender: env.render()
 
             action = env.action_space.sample()
             observation, reward, done, info = env.step(action)
@@ -40,7 +42,10 @@ class TestSquareContinuousStateEnv(unittest.TestCase):
                 print 'Episode Finished'
                 break
 
-            sleep(0.01)
+            if bRender:
+                sleep(1)
+            else:
+                sleep(0.01)
 
         return True
 

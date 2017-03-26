@@ -39,8 +39,7 @@ class SquareWorld:
             pygame.init()
             size = 800, 800
             self.screen = pygame.display.set_mode(size)
-            pygame.font.init()
-            default_font = pygame.font.get_default_font()
+            pygame.display.set_caption('square world')
 
             min_size            = min((self.screen.get_width(),self.screen.get_height()))
             self.sq_px_length   = min_size - (2 * 0.1 * min_size)

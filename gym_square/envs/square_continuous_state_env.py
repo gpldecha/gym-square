@@ -38,6 +38,20 @@ class SquareContinuousStateEnv(gym.Env):
     def set_reward(self,reward):
         self.square_world.reward = reward
 
+    def sample_observations(self,m):
+        """ Returns a set of m randomely sampled observations from the observations
+            space.
+            Args:
+                m   : init      , number of samples
+            Returns:
+                np.array((m,2)) , a 2-dimensional array of m states
+        """
+        obs_space = self.square_world.get_observation_space()
+        min_val   = obs_space[0]
+        max_val   = obs_space[1]
+        return np.random.uniform(min_val,max_val,(m,2))
+
+
     def _seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
         return [seed]
