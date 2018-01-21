@@ -1,8 +1,8 @@
-import pygame
-from pygame import gfxdraw
 import matplotlib.cm as cmx
 import matplotlib.colors as colors
 import numpy as np
+import pygame
+
 
 class Reward(object):
 
@@ -89,7 +89,7 @@ class ContinuousReward(Reward):
             num_x = px_end[0] - px_start[0]
             num_y = px_end[1] - px_start[1]
 
-            print num_x, ' x ', num_y, ' = ', num_x * num_y
+            print(num_x, ' x ', num_y, ' = ', num_x * num_y)
             self._c     = np.empty((num_x * num_y,4),dtype=int)
             f           = lambda x : int(255.0 * x)
 
@@ -99,7 +99,7 @@ class ContinuousReward(Reward):
                     self._c[z,:] = map(f,self.scalarMap.to_rgba(self.R(  pixel2pt(i,j)     )[0]))
                     z = z + 1
 
-            print '         z : ', z
+            print('         z : ', z)
             #xv, yv      = np.meshgrid(np.arange(int(px_start[0]), int(px_end[0]+1), 1), np.arange(int(px_start[1]), int(px_end[0]+1), 1))
             #self.pxs    = np.vstack((xv.flatten(), yv.flatten())).T
             #self.pts    = np.empty(self.pxs.shape,dtype=float)

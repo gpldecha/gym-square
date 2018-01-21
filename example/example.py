@@ -14,7 +14,7 @@ for _ in range(500):
     observation, reward, done, info = env.step(action)
 
     if done:
-        print 'Episode finished'
+        print('Episode finished')
         break
 
     sleep(0.25)

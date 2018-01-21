@@ -16,12 +16,6 @@ for _ in range(500):
     action = keyboard.get_action()
     observation, reward, done, info = env.step(action)
 
-    print 'act:  ', action
-    print 'obs:  ', observation
-    print 'rew:  ', reward
-    print 'done: ', done
-    print ' '
-
     if done:
-        print 'Episode Finished'
+        print('Episode Finished')
         break

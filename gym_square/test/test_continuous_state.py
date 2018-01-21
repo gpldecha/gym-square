@@ -11,8 +11,7 @@ class TestSquareContinuousStateEnv(unittest.TestCase):
 
     def test_continuous_state_env(self):
 
-        print '=== Test SquareContinuousStateEnv ==='
-        print ' '
+        print('=== Test SquareContinuousStateEnv ===')
 
         env = SquareContinuousStateEnv()
         env.reset()
@@ -20,9 +19,9 @@ class TestSquareContinuousStateEnv(unittest.TestCase):
         cm = cmx.get_cmap('brg')
         env.square_world.reward.set_color_map(cm)
 
-        env.square_world.set_agent_state([0.5,0.5])
+        env.square_world.set_agent_state([0.5, 0.5])
 
-        bRender = True
+        bRender = False
 
         if bRender: env.render()
 
@@ -32,14 +31,14 @@ class TestSquareContinuousStateEnv(unittest.TestCase):
             action = env.action_space.sample()
             observation, reward, done, info = env.step(action)
 
-            print 'act:  ', action
-            print 'obs:  ', observation
-            print 'rew:  ', reward
-            print 'done: ', done
-            print ' '
+            print('act:  ', action)
+            print('obs:  ', observation)
+            print('rew:  ', reward)
+            print('done: ', done)
+            print(' ')
 
             if done:
-                print 'Episode Finished'
+                print('Episode Finished')
                 break
 
             if bRender:

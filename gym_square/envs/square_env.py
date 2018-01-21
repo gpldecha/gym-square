@@ -8,14 +8,12 @@
 
 """
 
-import math
 import gym
+import numpy as np
 from gym import spaces
 from gym.utils import seeding
-import numpy as np
+from gym_square.envs.square_world.square_world import SquareWorld
 
-from square_world.square_world import SquareWorld
-from square_world.reward import Reward
 
 class SquareEnv(gym.Env):
 
